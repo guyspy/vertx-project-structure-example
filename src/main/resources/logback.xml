@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+  <property name="APP_NAME" value="clamlab"/>
+  <property name="LOG_HOME" value="logs"/>
+  <property name="CHARSET" value="UTF-8"/>
+  <property name="PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS, GMT+8} [%-5level][%thread] %logger{60} : %msg%n"/>
+
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <Pattern>${PATTERN}</Pattern>
+    </encoder>
+  </appender>
+
+  <!-- Main log appender -->
+  <appender name="MAIN_ROLLING_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${user.dir}/logs/${APP_NAME}.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>${LOG_HOME}/${APP_NAME}-log-%d{yyyy-MM-dd}.gz</fileNamePattern>
+      <maxHistory>10</maxHistory>
+    </rollingPolicy>
+    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+      <pattern>${PATTERN}</pattern>
+      <charset>${CHARSET}</charset>
+    </encoder>
+  </appender>
+
+
+  <root level="INFO">
+    <appender-ref ref="STDOUT"/>
+    <appender-ref ref="MAIN_ROLLING_FILE"/>
+  </root>
+
+</configuration>

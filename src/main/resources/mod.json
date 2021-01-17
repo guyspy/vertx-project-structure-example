@@ -1,0 +1,4 @@
+{
+  "main": "net.aotter.clamlab.MainVerticle",
+  "auto-redeploy": true
+}
